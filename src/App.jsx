@@ -1,30 +1,45 @@
 import TodoForm from "./Components/TodoForm.jsx";
-import {useState} from "react";
-import './App.css'
 import TodoList from "./Components/TodoList.jsx";
 import NoTodo from "./Components/NoTodo.jsx";
+import {useState} from "react";
+import './App.css'
 
 function App() {
     const [todos, setTodos] = useState([
         {
             id: 1,
             title: "Finish React Series",
+            isComplete: false,
         },
         {
             id: 2,
             title: "Go Grocery",
+            isComplete: false,
         },
         {
             id: 3,
             title: "Take over the world",
+            isComplete: false,
         }
     ]);
 
     const [idForTodo, setIdForTodo] = useState(4);
 
     function addTodo(todo) {
-        setTodos([...todos, {id: idForTodo, title: todo,},])
+        setTodos([...todos, {id: idForTodo, title: todo, isComplete: false},])
         setIdForTodo((prevIdForTodo) => prevIdForTodo + 1);
+    }
+
+    function completeTodo(id) {
+        const updatedTodos = todos.map((todo) => {
+            if (todo.id === id) {
+                todo.isComplete = !todo.isComplete;
+            }
+
+            return todo;
+        });
+
+        setTodos(updatedTodos);
     }
 
     return (
@@ -33,7 +48,7 @@ function App() {
                 <h3 className="text-black text-2xl font-semibold mb-2">Todo App</h3>
                 <TodoForm addTodo={addTodo}/>
                 {todos.length > 0 ? (
-                        <TodoList todos={todos}></TodoList>
+                        <TodoList todos={todos} completeTodo={completeTodo}></TodoList>
                     ) :
                     <NoTodo></NoTodo>
                 }
