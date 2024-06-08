@@ -90,6 +90,10 @@ function App() {
         return todos.filter((todo) => !todo.isComplete).length;
     }
 
+    function clearCompletedTodos() {
+        setTodos([...todos].filter((todo) => !todo.isComplete));
+    }
+
     return (
         <main>
             <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
@@ -97,7 +101,8 @@ function App() {
                 <TodoForm addTodo={addTodo}/>
                 {todos.length > 0 ? (
                         <TodoList todos={todos} completeTodo={completeTodo} markAsEditing={markAsEditing}
-                                  updateTodo={updateTodo} cancelEdit={cancelEdit} deleteTodo={deleteTodo} remainingTodos={remainingTodos}></TodoList>
+                                  updateTodo={updateTodo} cancelEdit={cancelEdit} deleteTodo={deleteTodo}
+                                  remainingTodos={remainingTodos} clearCompletedTodos={clearCompletedTodos}></TodoList>
                     ) :
                     <NoTodo></NoTodo>
                 }
