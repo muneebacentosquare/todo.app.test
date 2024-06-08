@@ -10,23 +10,26 @@ function App() {
             id: 1,
             title: "Finish React Series",
             isComplete: false,
+            isEditing: false,
         },
         {
             id: 2,
             title: "Go Grocery",
             isComplete: false,
+            isEditing: false,
         },
         {
             id: 3,
             title: "Take over the world",
             isComplete: false,
+            isEditing: false,
         }
     ]);
 
     const [idForTodo, setIdForTodo] = useState(4);
 
     function addTodo(todo) {
-        setTodos([...todos, {id: idForTodo, title: todo, isComplete: false},])
+        setTodos([...todos, {id: idForTodo, title: todo, isComplete: false, isEditing: false},])
         setIdForTodo((prevIdForTodo) => prevIdForTodo + 1);
     }
 
@@ -42,13 +45,25 @@ function App() {
         setTodos(updatedTodos);
     }
 
+    function markAsEditing(id) {
+        const updatedTodos = todos.map((todo) => {
+            if (todo.id === id) {
+                todo.isEditing = !todo.isEditing;
+                console.log('editing');
+            }
+            return todo;
+        });
+
+        setTodos(updatedTodos);
+    }
+
     return (
         <main>
             <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
                 <h3 className="text-black text-2xl font-semibold mb-2">Todo App</h3>
                 <TodoForm addTodo={addTodo}/>
                 {todos.length > 0 ? (
-                        <TodoList todos={todos} completeTodo={completeTodo}></TodoList>
+                        <TodoList todos={todos} completeTodo={completeTodo} markAsEditing={markAsEditing}></TodoList>
                     ) :
                     <NoTodo></NoTodo>
                 }

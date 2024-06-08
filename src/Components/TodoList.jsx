@@ -11,8 +11,17 @@ export default function TodoList(props) {
                                    onChange={() => props.completeTodo(todo.id)}
                                    className="checked:bg-blue-500"
                             />
-                            <label htmlFor={todo.id}
-                                   className={`text-gray-700 text-base ${todo.isComplete ? 'line-through' : ''}`}>{todo.title}</label>
+                            {!todo.isEditing ? (
+                                <label onDoubleClick={() => props.markAsEditing(todo.id)}
+                                       className={`text-gray-700 text-base ${todo.isComplete ? 'line-through' : ''}`}>
+                                    {todo.title}
+                                </label>
+                            ) : (
+                                <input
+                                    className="block w-full border border-gray-200 p-2.5 rounded my-2.5 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
+                                    type="text"
+                                    placeholder="What do you need to do?"/>
+                            )}
                         </div>
                         <button type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
