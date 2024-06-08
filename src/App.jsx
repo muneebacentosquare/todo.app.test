@@ -86,6 +86,10 @@ function App() {
         setTodos([...todos].filter((todo) => todo.id !== id));
     }
 
+    function remainingTodos() {
+        return todos.filter((todo) => !todo.isComplete).length;
+    }
+
     return (
         <main>
             <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
@@ -93,33 +97,10 @@ function App() {
                 <TodoForm addTodo={addTodo}/>
                 {todos.length > 0 ? (
                         <TodoList todos={todos} completeTodo={completeTodo} markAsEditing={markAsEditing}
-                                  updateTodo={updateTodo} cancelEdit={cancelEdit} deleteTodo={deleteTodo}></TodoList>
+                                  updateTodo={updateTodo} cancelEdit={cancelEdit} deleteTodo={deleteTodo} remainingTodos={remainingTodos}></TodoList>
                     ) :
                     <NoTodo></NoTodo>
                 }
-                <hr className="mt-2"/>
-                <div className="flex justify-between items-center my-4">
-                    <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Check All
-                    </button>
-                    <p className="text-gray-700">3 tasks remaining</p>
-                </div>
-                <hr/>
-                <div className="flex justify-between items-center my-4">
-                    <div className="flex space-x-2 items-center">
-                        <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base">
-                            All
-                        </button>
-                        <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">
-                            Active
-                        </button>
-                        <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">
-                            Completed
-                        </button>
-                    </div>
-                    <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Clear
-                        Completed
-                    </button>
-                </div>
             </div>
         </main>
     )
