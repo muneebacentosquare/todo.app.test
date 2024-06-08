@@ -1,4 +1,5 @@
 import TodoItemsRemaining from "./TodoItemsRemaining.jsx";
+import ClearCompleted from "./ClearCompleted.jsx";
 
 export default function TodoList(props) {
     return (
@@ -65,9 +66,7 @@ export default function TodoList(props) {
                         Completed
                     </button>
                 </div>
-                <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Clear
-                    Completed
-                </button>
+                <ClearCompleted clearCompletedTodos={props.clearCompletedTodos}/>
             </div>
         </>
     );
