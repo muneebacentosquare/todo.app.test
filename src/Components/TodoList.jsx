@@ -20,6 +20,13 @@ export default function TodoList(props) {
                                 <input
                                     className="block w-full border border-gray-200 p-2.5 rounded my-2.5 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
                                     type="text"
+                                    onBlur={(event) => updateTodo(event, todo.id)}
+                                    onKeyDown={(event) => {
+                                        if (event.key === 'Enter') {
+                                            props.updateTodo(event, todo.id);
+                                        }
+                                    }}
+                                    defaultValue={todo.title}
                                     placeholder="What do you need to do?"/>
                             )}
                         </div>
