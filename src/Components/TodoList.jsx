@@ -1,3 +1,5 @@
+import TodoItemsRemaining from "./TodoItemsRemaining.jsx";
+
 export default function TodoList(props) {
     return (
         <>
@@ -44,6 +46,29 @@ export default function TodoList(props) {
                     </li>
                 ))}
             </ul>
+            <hr className="mt-2"/>
+            <div className="flex justify-between items-center my-4">
+                <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Check All
+                </button>
+                <TodoItemsRemaining remainingTodos={props.remainingTodos}/>
+            </div>
+            <hr/>
+            <div className="flex justify-between items-center my-4">
+                <div className="flex space-x-2 items-center">
+                    <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base">
+                        All
+                    </button>
+                    <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">
+                        Active
+                    </button>
+                    <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">
+                        Completed
+                    </button>
+                </div>
+                <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Clear
+                    Completed
+                </button>
+            </div>
         </>
     );
 }
