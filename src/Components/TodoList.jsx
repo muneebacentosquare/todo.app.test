@@ -1,12 +1,16 @@
 import TodoItemsRemaining from "./TodoItemsRemaining.jsx";
 import ClearCompleted from "./ClearCompleted.jsx";
 import CheckAllTodo from "./CheckAllTodo.jsx";
+import TodoFilter from "./TodoFilter.jsx";
+import {useState} from "react";
 
 export default function TodoList(props) {
+    const [filter, setFilter] = useState('all');
+
     return (
         <>
             <ul className="mt-2">
-                {props.todos.map((todo) => (
+                {props.todosFiltered(filter).map((todo) => (
                     <li key={todo.id} className="flex justify-between items-center px-1 py-2">
                         <div className="flex items-center space-x-2.5">
                             <input type="checkbox"
@@ -39,7 +43,7 @@ export default function TodoList(props) {
                         <button onClick={() => props.deleteTodo(todo.id)}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
                                  fill="none"
-                                 stroke="#696969" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 stroke="#696969" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                                  className="lucide lucide-x">
                                 <path d="M18 6 6 18"/>
                                 <path d="m6 6 12 12"/>
@@ -50,22 +54,12 @@ export default function TodoList(props) {
             </ul>
             <hr className="mt-2"/>
             <div className="flex justify-between items-center my-4">
-                <CheckAllTodo completeAllTodos={props.completeAllTodos} />
+                <CheckAllTodo completeAllTodos={props.completeAllTodos}/>
                 <TodoItemsRemaining remainingTodos={props.remainingTodos}/>
             </div>
             <hr/>
             <div className="flex justify-between items-center my-4">
-                <div className="flex space-x-2 items-center">
-                    <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base">
-                        All
-                    </button>
-                    <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">
-                        Active
-                    </button>
-                    <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">
-                        Completed
-                    </button>
-                </div>
+                <TodoFilter todosFiltered={props.todosFiltered} filter={filter} setFilter={setFilter} />
                 <ClearCompleted clearCompletedTodos={props.clearCompletedTodos}/>
             </div>
         </>

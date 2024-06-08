@@ -102,6 +102,16 @@ function App() {
         setTodos(updateTodos);
     }
 
+    function todosFiltered(filter) {
+        if (filter === 'all') {
+            return todos;
+        } else if (filter === 'active') {
+            return todos.filter((todo) => !todo.isComplete);
+        } else if (filter === 'completed') {
+            return todos.filter((todo) => todo.isComplete);
+        }
+    }
+
     return (
         <main>
             <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
@@ -111,7 +121,7 @@ function App() {
                         <TodoList todos={todos} completeTodo={completeTodo} markAsEditing={markAsEditing}
                                   updateTodo={updateTodo} cancelEdit={cancelEdit} deleteTodo={deleteTodo}
                                   remainingTodos={remainingTodos} clearCompletedTodos={clearCompletedTodos}
-                                  completeAllTodos={completeAllTodos}></TodoList>
+                                  completeAllTodos={completeAllTodos} todosFiltered={todosFiltered}></TodoList>
                     ) :
                     <NoTodo></NoTodo>
                 }
