@@ -24,6 +24,8 @@ export default function TodoList(props) {
                                     onKeyDown={(event) => {
                                         if (event.key === 'Enter') {
                                             props.updateTodo(event, todo.id);
+                                        } else if (event.key === 'Escape') {
+                                            props.cancelEdit(event, todo.id);
                                         }
                                     }}
                                     defaultValue={todo.title}
