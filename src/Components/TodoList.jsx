@@ -1,5 +1,6 @@
 import TodoItemsRemaining from "./TodoItemsRemaining.jsx";
 import ClearCompleted from "./ClearCompleted.jsx";
+import CheckAllTodo from "./CheckAllTodo.jsx";
 
 export default function TodoList(props) {
     return (
@@ -49,8 +50,7 @@ export default function TodoList(props) {
             </ul>
             <hr className="mt-2"/>
             <div className="flex justify-between items-center my-4">
-                <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Check All
-                </button>
+                <CheckAllTodo completeAllTodos={props.completeAllTodos} />
                 <TodoItemsRemaining remainingTodos={props.remainingTodos}/>
             </div>
             <hr/>

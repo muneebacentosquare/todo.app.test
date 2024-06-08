@@ -94,6 +94,14 @@ function App() {
         setTodos([...todos].filter((todo) => !todo.isComplete));
     }
 
+    function completeAllTodos() {
+        const updateTodos = todos.map((todo) => {
+            todo.isComplete = true;
+            return todo;
+        });
+        setTodos(updateTodos);
+    }
+
     return (
         <main>
             <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
@@ -102,7 +110,8 @@ function App() {
                 {todos.length > 0 ? (
                         <TodoList todos={todos} completeTodo={completeTodo} markAsEditing={markAsEditing}
                                   updateTodo={updateTodo} cancelEdit={cancelEdit} deleteTodo={deleteTodo}
-                                  remainingTodos={remainingTodos} clearCompletedTodos={clearCompletedTodos}></TodoList>
+                                  remainingTodos={remainingTodos} clearCompletedTodos={clearCompletedTodos}
+                                  completeAllTodos={completeAllTodos}></TodoList>
                     ) :
                     <NoTodo></NoTodo>
                 }
