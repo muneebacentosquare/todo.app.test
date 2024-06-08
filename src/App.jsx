@@ -1,7 +1,7 @@
 import TodoForm from "./Components/TodoForm.jsx";
 import TodoList from "./Components/TodoList.jsx";
 import NoTodo from "./Components/NoTodo.jsx";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import './App.css'
 
 function App() {
@@ -25,8 +25,12 @@ function App() {
             isEditing: false,
         }
     ]);
-
     const [idForTodo, setIdForTodo] = useState(4);
+    const [name, setName] = useState("");
+    const nameInputElement = useRef(null);
+    useEffect(() => {
+        nameInputElement.current.focus();
+    },[]);
 
     function addTodo(todo) {
         setTodos([...todos, {id: idForTodo, title: todo, isComplete: false, isEditing: false},])
@@ -115,6 +119,17 @@ function App() {
     return (
         <main>
             <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
+                <h3 className="text-black text-2xl font-semibold mb-2">What's your name?</h3>
+                <form action="#" className="w-full">
+                    <input
+                        className="block w-full border border-gray-200 p-2.5 rounded my-2.5 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
+                        type="text"
+                        ref={nameInputElement}
+                        value={name}
+                        onChange={event => setName(event.target.value)}
+                        placeholder="Enter Name.."/>
+                </form>
+                {name && <p>Hello,name</p>}
                 <h3 className="text-black text-2xl font-semibold mb-2">Todo App</h3>
                 <TodoForm addTodo={addTodo}/>
                 {todos.length > 0 ? (
