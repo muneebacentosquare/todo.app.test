@@ -72,13 +72,24 @@ function App() {
         setTodos(updateTodos);
     }
 
+    function cancelEdit(event, id) {
+        const updateTodos = todos.map((todo) => {
+            if (todo.id === id) {
+                todo.isEditing = false;
+            }
+            return todo;
+        });
+        setTodos(updateTodos);
+    }
+
     return (
         <main>
             <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
                 <h3 className="text-black text-2xl font-semibold mb-2">Todo App</h3>
                 <TodoForm addTodo={addTodo}/>
                 {todos.length > 0 ? (
-                        <TodoList todos={todos} completeTodo={completeTodo} markAsEditing={markAsEditing} updateTodo={updateTodo}></TodoList>
+                        <TodoList todos={todos} completeTodo={completeTodo} markAsEditing={markAsEditing}
+                                  updateTodo={updateTodo} cancelEdit={cancelEdit}></TodoList>
                     ) :
                     <NoTodo></NoTodo>
                 }
