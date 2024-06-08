@@ -82,6 +82,10 @@ function App() {
         setTodos(updateTodos);
     }
 
+    function deleteTodo(id) {
+        setTodos([...todos].filter((todo) => todo.id !== id));
+    }
+
     return (
         <main>
             <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
@@ -89,7 +93,7 @@ function App() {
                 <TodoForm addTodo={addTodo}/>
                 {todos.length > 0 ? (
                         <TodoList todos={todos} completeTodo={completeTodo} markAsEditing={markAsEditing}
-                                  updateTodo={updateTodo} cancelEdit={cancelEdit}></TodoList>
+                                  updateTodo={updateTodo} cancelEdit={cancelEdit} deleteTodo={deleteTodo}></TodoList>
                     ) :
                     <NoTodo></NoTodo>
                 }

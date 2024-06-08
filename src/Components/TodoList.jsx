@@ -32,7 +32,7 @@ export default function TodoList(props) {
                                     placeholder="What do you need to do?"/>
                             )}
                         </div>
-                        <button type="button">
+                        <button onClick={() => props.deleteTodo(todo.id)}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
                                  fill="none"
                                  stroke="#696969" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
