@@ -52,9 +52,17 @@ export default function TodoList(props) {
                     </li>
                 ))}
             </ul>
+            <div className="flex space-x-5 items-center my-4">
+                <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Toggle Feature
+                    1
+                </button>
+                <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Toggle Feature
+                    2
+                </button>
+            </div>
             <hr className="mt-2"/>
             <div className="flex justify-between items-center my-4">
-                <CheckAllTodo completeAllTodos={props.completeAllTodos}/>
+            <CheckAllTodo completeAllTodos={props.completeAllTodos}/>
                 <TodoItemsRemaining remainingTodos={props.remainingTodos}/>
             </div>
             <hr/>
