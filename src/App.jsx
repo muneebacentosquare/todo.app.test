@@ -4,6 +4,7 @@ import TodoForm from "./Components/TodoForm.jsx";
 import TodoList from "./Components/TodoList.jsx";
 import NoTodo from "./Components/NoTodo.jsx";
 import './App.css'
+import {TodosContext} from "./context/TodosContext.js";
 
 function App() {
     const [todos, setTodos] = useLocalStorage('todos', []);
@@ -13,11 +14,6 @@ function App() {
     useEffect(() => {
         nameInputElement.current.focus();
     }, []);
-
-    function addTodo(todo) {
-        setTodos([...todos, {id: idForTodo, title: todo, isComplete: false, isEditing: false},])
-        setIdForTodo((prevIdForTodo) => prevIdForTodo + 1);
-    }
 
     function completeTodo(id) {
         const updatedTodos = todos.map((todo) => {
@@ -103,31 +99,33 @@ function App() {
     }
 
     return (
-        <main>
-            <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
-                <h3 className="text-black text-2xl font-semibold mb-2">What's your name?</h3>
-                <form action="#" className="w-full">
-                    <input
-                        className="block w-full border border-gray-200 p-2.5 rounded my-2.5 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
-                        type="text"
-                        ref={nameInputElement}
-                        value={name}
-                        onChange={handleNameInput}
-                        placeholder="Enter Name.."/>
-                </form>
-                {name && (<p>Hello,{name}</p>)}
-                <h3 className="text-black text-2xl font-semibold mb-2">Todo App</h3>
-                <TodoForm addTodo={addTodo}/>
-                {todos.length > 0 ? (
-                        <TodoList todos={todos} completeTodo={completeTodo} markAsEditing={markAsEditing}
-                                  updateTodo={updateTodo} cancelEdit={cancelEdit} deleteTodo={deleteTodo}
-                                  remainingTodos={remainingTodos} clearCompletedTodos={clearCompletedTodos}
-                                  completeAllTodos={completeAllTodos} todosFiltered={todosFiltered}></TodoList>
-                    ) :
-                    <NoTodo></NoTodo>
-                }
-            </div>
-        </main>
+        <TodosContext.Provider value={{todos, setTodos, idForTodo, setIdForTodo}}>
+            <main>
+                <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
+                    <h3 className="text-black text-2xl font-semibold mb-2">What's your name?</h3>
+                    <form action="#" className="w-full">
+                        <input
+                            className="block w-full border border-gray-200 p-2.5 rounded my-2.5 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
+                            type="text"
+                            ref={nameInputElement}
+                            value={name}
+                            onChange={handleNameInput}
+                            placeholder="Enter Name.."/>
+                    </form>
+                    {name && (<p>Hello,{name}</p>)}
+                    <h3 className="text-black text-2xl font-semibold mb-2">Todo App</h3>
+                    <TodoForm/>
+                    {todos.length > 0 ? (
+                            <TodoList todos={todos} completeTodo={completeTodo} markAsEditing={markAsEditing}
+                                      updateTodo={updateTodo} cancelEdit={cancelEdit} deleteTodo={deleteTodo}
+                                      remainingTodos={remainingTodos} clearCompletedTodos={clearCompletedTodos}
+                                      completeAllTodos={completeAllTodos} todosFiltered={todosFiltered}></TodoList>
+                        ) :
+                        <NoTodo></NoTodo>
+                    }
+                </div>
+            </main>
+        </TodosContext.Provider>
     )
 }
 
