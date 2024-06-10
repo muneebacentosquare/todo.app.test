@@ -1,10 +1,13 @@
 import TodoItemsRemaining from "./TodoItemsRemaining.jsx";
 import ClearCompleted from "./ClearCompleted.jsx";
+import useToggle from "../hooks/useToggle.js";
 import CheckAllTodo from "./CheckAllTodo.jsx";
 import TodoFilter from "./TodoFilter.jsx";
 import {useState} from "react";
 
 export default function TodoList(props) {
+    const [isFeatureOneVisible, setFeatureOneVisible] = useToggle(true);
+    const [isFeatureTwoVisible, setFeatureTwoVisible] = useToggle(false);
     const [filter, setFilter] = useState('all');
 
     return (
@@ -53,23 +56,31 @@ export default function TodoList(props) {
                 ))}
             </ul>
             <div className="flex space-x-5 items-center my-4">
-                <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Toggle Feature
+                <button onClick={() => setFeatureOneVisible(prevOneVisible => !prevOneVisible)}
+                        className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Toggle Feature
                     1
                 </button>
-                <button className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Toggle Feature
+                <button onClick={() => setFeatureTwoVisible(prevTwoVisible => !prevTwoVisible)}
+                        className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Toggle Feature
                     2
                 </button>
             </div>
             <hr className="mt-2"/>
-            <div className="flex justify-between items-center my-4">
-            <CheckAllTodo completeAllTodos={props.completeAllTodos}/>
-                <TodoItemsRemaining remainingTodos={props.remainingTodos}/>
-            </div>
-            <hr/>
-            <div className="flex justify-between items-center my-4">
-                <TodoFilter todosFiltered={props.todosFiltered} filter={filter} setFilter={setFilter} />
-                <ClearCompleted clearCompletedTodos={props.clearCompletedTodos}/>
-            </div>
+            {isFeatureOneVisible && (
+                <div className="flex justify-between items-center my-4">
+                    <CheckAllTodo completeAllTodos={props.completeAllTodos}/>
+                    <TodoItemsRemaining remainingTodos={props.remainingTodos}/>
+                </div>
+            )}
+            {isFeatureTwoVisible && (
+                <>
+                    <hr/>
+                    <div className="flex justify-between items-center my-4">
+                        <TodoFilter todosFiltered={props.todosFiltered} filter={filter} setFilter={setFilter}/>
+                        <ClearCompleted clearCompletedTodos={props.clearCompletedTodos}/>
+                    </div>
+                </>
+            )}
         </>
     );
 }
