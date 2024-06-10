@@ -1,5 +1,5 @@
 import useLocalStorage from "./hooks/useLocalStorage.js";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef} from "react";
 import TodoForm from "./Components/TodoForm.jsx";
 import TodoList from "./Components/TodoList.jsx";
 import NoTodo from "./Components/NoTodo.jsx";
