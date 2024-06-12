@@ -1,9 +1,9 @@
+import './App.css'
 import useLocalStorage from "./hooks/useLocalStorage.js";
 import {useEffect, useRef} from "react";
 import TodoForm from "./Components/TodoForm.jsx";
 import TodoList from "./Components/TodoList.jsx";
 import NoTodo from "./Components/NoTodo.jsx";
-import './App.css'
 import {TodosContext} from "./context/TodosContext.js";
 
 function App() {
