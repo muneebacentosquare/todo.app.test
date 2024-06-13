@@ -1,23 +1,24 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export default function NavigationBar() {
     return (
         <nav className="mx-6 my-2 p-2 bg-gray-400">
             <ul className="flex space-x-2 justify-center items-center">
                 <li>
-                    <a href="#">
+                    <Link to="/">
                         Home
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/about">
                         About
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/contact">
                         Contact
-                    </a>
+                    </Link>
                 </li>
 
             </ul>
