@@ -7,8 +7,7 @@ export default function Root() {
     return (
         <>
             <NavigationBar></NavigationBar>
-            {/*<App/>*/}
-            <About></About>
+            <App/>
         </>
     );
 }
