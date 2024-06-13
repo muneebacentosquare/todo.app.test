@@ -1,10 +1,15 @@
 import './App.css'
 import useLocalStorage from "./hooks/useLocalStorage.js";
-import {useEffect, useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import TodoForm from "./Components/TodoForm.jsx";
 import TodoList from "./Components/TodoList.jsx";
 import NoTodo from "./Components/NoTodo.jsx";
 import {TodosContext} from "./context/TodosContext.js";
+import {Transition} from "@headlessui/react";
+import CheckAllTodo from "./Components/CheckAllTodo.jsx";
+import TodoItemsRemaining from "./Components/TodoItemsRemaining.jsx";
+import TodoFilter from "./Components/TodoFilter.jsx";
+import ClearCompleted from "./Components/ClearCompleted.jsx";
 
 function App() {
     const [todos, setTodos] = useLocalStorage('todos', []);
@@ -99,13 +104,13 @@ function App() {
     }
 
     return (
-        <TodosContext.Provider value={{todos, setTodos, idForTodo, setIdForTodo}}>
-            <main>
-                <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
-                    <h3 className="text-black text-2xl font-semibold mb-2">What's your name?</h3>
-                    <form action="#" className="w-full">
-                        <input
-                            className="block w-full border border-gray-200 p-2.5 rounded my-2.5 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
+    <TodosContext.Provider value={{todos, setTodos, idForTodo, setIdForTodo}}>
+        <main>
+            <div className="w-2/5 p-5 my-10 mx-auto justify-center rounded shadow">
+                <h3 className="text-black text-2xl font-semibold mb-2">What's your name?</h3>
+                <form action="#" className="w-full">
+                    <input
+                        className="block w-full border border-gray-200 p-2.5 rounded my-2.5 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
                             type="text"
                             ref={nameInputElement}
                             value={name}
