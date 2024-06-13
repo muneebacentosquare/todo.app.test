@@ -3,6 +3,7 @@ import ClearCompleted from "./ClearCompleted.jsx";
 import useToggle from "../hooks/useToggle.js";
 import CheckAllTodo from "./CheckAllTodo.jsx";
 import TodoFilter from "./TodoFilter.jsx";
+import {Transition} from "@headlessui/react";
 import {useState} from "react";
 
 export default function TodoList(props) {
@@ -56,22 +57,30 @@ export default function TodoList(props) {
                 ))}
             </ul>
             <div className="flex space-x-5 items-center my-4">
-                <button onClick={() => setFeatureOneVisible(prevOneVisible => !prevOneVisible)}
+                <button onClick={() => setFeatureOneVisible((prevOneVisible) => !prevOneVisible)}
                         className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Toggle Feature
                     1
                 </button>
-                <button onClick={() => setFeatureTwoVisible(prevTwoVisible => !prevTwoVisible)}
+                <button onClick={() => setFeatureTwoVisible((prevTwoVisible) => !prevTwoVisible)}
                         className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Toggle Feature
                     2
                 </button>
             </div>
             <hr className="mt-2"/>
-            {isFeatureOneVisible && (
+            <Transition
+                show={isFeatureOneVisible}
+                enter="transition-all duration-300 ease-in-out"
+                enterFrom="transform translate-y-full"
+                enterTo="transform translate-y-0"
+                leave="transition-all duration-150 ease-in-out"
+                leaveFrom="transform translate-y-0"
+                leaveTo="transform translate-y-full"
+            >
                 <div className="flex justify-between items-center my-4">
                     <CheckAllTodo completeAllTodos={props.completeAllTodos}/>
                     <TodoItemsRemaining remainingTodos={props.remainingTodos}/>
                 </div>
-            )}
+            </Transition>
             {isFeatureTwoVisible && (
                 <>
                     <hr/>
