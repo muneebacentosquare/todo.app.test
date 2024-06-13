@@ -1,26 +1,38 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 export default function NavigationBar() {
     return (
         <nav className="mx-6 my-2 p-2 bg-gray-400">
             <ul className="flex space-x-2 justify-center items-center">
                 <li>
-                    <Link to="/">
+                    <NavLink className={({isActive}) =>
+                        isActive ? "font-bold" : ""
+                    } to="/">
                         Home
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="/about">
+                    <NavLink className={({isActive}) =>
+                        isActive ? "font-bold" : ""
+                    } to="/about">
                         About
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="/contact">
+                    <NavLink className={({isActive}) =>
+                        isActive ? "font-bold" : ""
+                    } to="/contact">
                         Contact
-                    </Link>
+                    </NavLink>
                 </li>
-
+                <li>
+                    <NavLink className={({isActive}) =>
+                        isActive ? "font-bold" : ""
+                    } to="/blog">
+                        Blog
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );
