@@ -10,7 +10,6 @@ export default function Reddit() {
             .then(response => response.json())
             .then(results => {
                 setIsLoading(false);
-                console.log(results.data.children);
                 setPosts(results.data.children)
             })
             .catch(error => {
