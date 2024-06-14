@@ -1,4 +1,3 @@
-import './App.css'
 import useLocalStorage from "./hooks/useLocalStorage.js";
 import React, {useEffect, useRef} from "react";
 import TodoForm from "./Components/TodoForm.jsx";

@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 
 export default function NavigationBar() {
     return (
-        <nav className="mx-6 my-2 p-2 bg-gray-400">
+        <nav className="mx-6 my-2 p-2 bg-violet-300">
             <ul className="flex space-x-2 justify-center items-center">
                 <li>
                     <NavLink className={({isActive}) =>
