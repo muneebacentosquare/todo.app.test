@@ -1,22 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function Reddit() {
-    const [posts, setPosts] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [errorMessage, setErrorMessage] = useState(null);
-
-    useEffect(() => {
-        fetch('https://www.reddit.com/r/aww.json')
-            .then(response => response.json())
-            .then(results => {
-                setIsLoading(false);
-                setPosts(results.data.children)
-            })
-            .catch(error => {
-                setIsLoading(false);
-                setErrorMessage('There was an error');
-            });
-    }, [])
+    const {data: posts, isLoading, errorMessage} = useFetch('https://www.reddit.com/r/aww.json');
 
     return (
         <>
@@ -31,8 +17,8 @@ export default function Reddit() {
             )}
             {posts && (
                 <div className="grid grid-cols-4 gap-4">
-                    {posts.map(post => (
-                        <div className="border broder-gray-200">
+                    {posts.data.children.map(post => (
+                        <div key={post.data.id} className="border broder-gray-200">
                             <img className="w-full" alt={post.data.title || 'Reddit post'}
                                  src={post.data.thumbnail}/>
                             <div className="p-2">
