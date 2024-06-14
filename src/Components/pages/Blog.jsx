@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
 import Reddit from "./Reddit.jsx";
 import Joke from "./Joke.jsx";
 
@@ -13,7 +12,7 @@ export default function Blog() {
                 <button onClick={() => setRedditVisible((prevRedditVisible) => !isRedditVisible)}
                         className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Reddit Button
                 </button>
-                <button onClick={() => setJokeVisible(prevJokeVisible => !isJokeVisible)}
+                <button onClick={() => setJokeVisible((prevJokeVisible) => !isJokeVisible)}
                         className="py-1 px-2.5 rounded border border-gray-200 text-gray-600 text-base ">Joke Button
                 </button>
             </div>
