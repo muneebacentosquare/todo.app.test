@@ -33,6 +33,13 @@ export default function NavigationBar() {
                         Blog
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink className={({isActive}) =>
+                        isActive ? "font-bold" : ""
+                    } to="/products">
+                        Product Table
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );
