@@ -37,7 +37,14 @@ export default function NavigationBar() {
                     <NavLink className={({isActive}) =>
                         isActive ? "font-bold" : ""
                     } to="/products">
-                        Product Table
+                        Product
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink className={({isActive}) =>
+                        isActive ? "font-bold" : ""
+                    } to="/weather">
+                        Weather
                     </NavLink>
                 </li>
             </ul>
