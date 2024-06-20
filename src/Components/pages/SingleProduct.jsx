@@ -46,7 +46,122 @@ export default function SingleProduct() {
                     </button>
                     <h2 className="text-black font-semibold text-lg my-1">More Product Info</h2>
                     <p className="font-normal text-black text-base"><span
-                        className='font-semibold'>Description :</span> 2 years warranty</p>
+                        className='font-semibold'>Warranty Information :</span> 2 years warranty</p>
+                    <p className="font-normal text-black text-base"><span
+                        className='font-semibold'>Shipping Information :</span> 2 years warranty</p>
+                    <p className="font-normal text-black text-base"><span
+                        className='font-semibold'>Availability Status :</span> 2 years warranty</p>
+                    <p className="font-normal text-black text-base"><span
+                        className='font-semibold'>Return Policy :</span> 2 years warranty</p>
+                    <p className="font-normal text-black text-base"><span
+                        className='font-semibold'>Minimum Order Quantity :</span> 2 years warranty</p>
+                </div>
+            </div>
+            <div className="mt-4">
+                <h2 className="text-2xl font-semibold text-black mb-2">Reviews</h2>
+                <div className="py-2">
+                    <div className="flex space-x-2">
+                        <img alt="Images" className="w-10 h-10 object-center rounded-full"
+                             src="https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600"/>
+                        <div>
+                            <div className="flex justify-between items-center">
+                                <h5 className="text-black font-semibold text-base">Scarlett Wright</h5>
+                                <p className="text-gray-400 font-medium text-sm">2 days ago</p>
+                            </div>
+                            <div className="flex space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                     viewBox="0 0 24 24"
+                                     fill="#ffb638" stroke="#ffb638" strokeWidth="2"
+                                     strokeLinecap="round"
+                                     strokeLinejoin="round" className="lucide lucide-star">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                                <h6 className="text-sm">6 star rating</h6>
+                            </div>
+                            <p className="text-gray-700 font-normal text-base mt-1.5">Very Satisfied description of
+                                product this is the description of product This is the description of product this is
+                                the description of product this is the description of product</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="py-2">
+                    <div className="flex space-x-2">
+                        <img alt="Images" className="w-10 h-10 object-center rounded-full"
+                             src="https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600"/>
+                        <div>
+                            <div className="flex justify-between items-center">
+                                <h5 className="text-black font-semibold text-base">Scarlett Wright</h5>
+                                <p className="text-gray-400 font-medium text-sm">2 days ago</p>
+                            </div>
+                            <div className="flex space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                     viewBox="0 0 24 24"
+                                     fill="#ffb638" stroke="#ffb638" strokeWidth="2"
+                                     strokeLinecap="round"
+                                     strokeLinejoin="round" className="lucide lucide-star">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                                <h6 className="text-sm">6 star rating</h6>
+                            </div>
+                            <p className="text-gray-700 font-normal text-base mt-1.5">Very Satisfied description of
+                                product this is the description of product This is the description of product this is
+                                the description of product this is the description of product</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="py-2">
+                    <div className="flex space-x-2">
+                        <img alt="Images" className="w-10 h-10 object-center rounded-full"
+                             src="https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600"/>
+                        <div>
+                            <div className="flex justify-between items-center">
+                                <h5 className="text-black font-semibold text-base">Scarlett Wright</h5>
+                                <p className="text-gray-400 font-medium text-sm">2 days ago</p>
+                            </div>
+                            <div className="flex space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                     viewBox="0 0 24 24"
+                                     fill="#ffb638" stroke="#ffb638" strokeWidth="2"
+                                     strokeLinecap="round"
+                                     strokeLinejoin="round" className="lucide lucide-star">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                                <h6 className="text-sm">6 star rating</h6>
+                            </div>
+                            <p className="text-gray-700 font-normal text-base mt-1.5">Very Satisfied description of
+                                product this is the description of product This is the description of product this is
+                                the description of product this is the description of product</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="py-2">
+                    <div className="flex space-x-2">
+                        <img alt="Images" className="w-10 h-10 object-center rounded-full"
+                             src="https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600"/>
+                        <div>
+                            <div className="flex justify-between items-center">
+                                <h5 className="text-black font-semibold text-base">Scarlett Wright</h5>
+                                <p className="text-gray-400 font-medium text-sm">2 days ago</p>
+                            </div>
+                            <div className="flex space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                     viewBox="0 0 24 24"
+                                     fill="#ffb638" stroke="#ffb638" strokeWidth="2"
+                                     strokeLinecap="round"
+                                     strokeLinejoin="round" className="lucide lucide-star">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                                <h6 className="text-sm">6 star rating</h6>
+                            </div>
+                            <p className="text-gray-700 font-normal text-base mt-1.5">Very Satisfied description of
+                                product this is the description of product This is the description of product this is
+                                the description of product this is the description of product</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
