@@ -8,8 +8,6 @@ import Contact from "./pages/Contact.jsx";
 import Blog from "./pages/Blog.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
 import NoMatch from "./pages/NoMatch.jsx";
-import FilterableProductTable from "./pages/FilterableProductTable.jsx";
-import Weather from "./Weather.jsx";
 
 export default function Root() {
     return (
@@ -22,7 +20,6 @@ export default function Root() {
                     <Route path='/contact' element={<Contact/>}/>
                     <Route path='/blog' element={<Blog/>}/>
                     <Route path='/blog/:id' element={<BlogPost/>}/>
-                    <Route path='/weather' element={<Weather/>}/>
                     <Route path='*' element={<NoMatch/>}/>
                 </Routes>
             </div>
