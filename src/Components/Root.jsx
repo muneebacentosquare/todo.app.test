@@ -21,7 +21,6 @@ export default function Root() {
                     <Route path='/about' element={<About/>}/>
                     <Route path='/contact' element={<Contact/>}/>
                     <Route path='/blog' element={<Blog/>}/>
-                    <Route path='/products' element={<FilterableProductTable/>}/>
                     <Route path='/blog/:id' element={<BlogPost/>}/>
                     <Route path='/weather' element={<Weather/>}/>
                     <Route path='*' element={<NoMatch/>}/>
