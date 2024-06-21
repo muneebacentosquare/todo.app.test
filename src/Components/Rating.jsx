@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Rating({stars, reviews}) {
+export default function Rating({stars, reviews= " ", text = " "}) {
     const filledStar =
         (
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFA41D"
@@ -38,7 +38,7 @@ export default function Rating({stars, reviews}) {
         <div className="flex space-x-1 items-center">
             <h6 className="text-sm">{stars} </h6>
             {ratingStar}
-            <h6 className="text-sm">({[reviews]} reviews)</h6>
+            <h6 className="text-sm">{reviews} {text}</h6>
         </div>
     );
 }
