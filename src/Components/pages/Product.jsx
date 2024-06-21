@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 export default function Product() {
     const {data: items, isLoading, errorMessage} = useFetch('https://dummyjson.com/products');
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [itemsPerPage, setItemsPerPage] = useState(8);
     const lastItemIndex = currentPage * itemsPerPage;
     const firstItemIndex = lastItemIndex - itemsPerPage;
 
