@@ -2,6 +2,7 @@ import React from "react";
 import useToggle from "../../hooks/useToggle.js";
 import {useParams} from "react-router-dom";
 import useFetch from "../../hooks/useFetch.js";
+import Rating from "../Rating.jsx";
 
 export default function product() {
     const [isCartOpen, setIsCartOpen] = useToggle(false);
@@ -30,17 +31,7 @@ export default function product() {
                             <div className="col-span-3">
                                 <h6 className="text-base text-violet-800 font-medium">{product.category}</h6>
                                 <h3 className="font-normal text-xl text-black">{product.title}</h3>
-                                <div className="flex space-x-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                         viewBox="0 0 24 24"
-                                         fill="#ffb638" stroke="#ffb638" strokeWidth="2"
-                                         strokeLinecap="round"
-                                         strokeLinejoin="round" className="lucide lucide-star">
-                                        <polygon
-                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                                    </svg>
-                                    <h6 className="text-sm">{product.rating} <span className="text-gray-600">({[product.reviews.length]} reviews)</span></h6>
-                                </div>
+                                <Rating stars={product.rating} reviews={product.reviews.length}/>
                                 <p className="text-base text-red-700"><span
                                     className="font-semibold">{product.stock} </span>left in
                                     stock</p>
