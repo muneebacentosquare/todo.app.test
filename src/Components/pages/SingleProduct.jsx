@@ -1,12 +1,14 @@
 import React from "react";
 import useToggle from "../../hooks/useToggle.js";
+import {useParams} from "react-router-dom";
 
 export default function SingleProduct() {
     const [isCartOpen, setIsCartOpen] = useToggle(false);
-
+    const params = useParams();
     return (
         <>
             <div className="w-full lg:w-9/12 p-5 my-10 mx-auto justify-center rounded shadow">
+                <h5>This is a product {params.id}</h5>
                 <div className="grid grid-cols-5 gap-4">
                     <div className="col-span-2">
                         <img alt="Images" height="200px" className="w-full"
@@ -230,7 +232,6 @@ export default function SingleProduct() {
                     </div>
                 </div>
             )}
-
         </>
     );
 }
