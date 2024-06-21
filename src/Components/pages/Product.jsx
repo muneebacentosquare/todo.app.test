@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import useFetch from "../../hooks/useFetch.js";
 import Pagination from "../Pagination.jsx";
+import {NavLink} from "react-router-dom";
 
 export default function Product() {
     const {data: items, isLoading, errorMessage} = useFetch('https://dummyjson.com/products');
@@ -29,7 +30,7 @@ export default function Product() {
                 <>
                     <div className="grid grid-cols-4 gap-5">
                         {currentItems.map(item => (
-                            <div key={item.id} className="border border-gray-200">
+                            <NavLink key={item.id} className="border border-gray-200" to={`/product/${item.id}`}>
                                 <img alt="Images" height="200px" className="w-full"
                                      src={item.thumbnail}/>
                                 <div className="p-2">
@@ -58,10 +59,11 @@ export default function Product() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </NavLink>
                         ))}
                     </div>
-                    <Pagination totalItems={items.products.length} itemsPerPage={itemsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+                    <Pagination totalItems={items.products.length} itemsPerPage={itemsPerPage}
+                                setCurrentPage={setCurrentPage} currentPage={currentPage}/>
                 </>
             )}
         </div>

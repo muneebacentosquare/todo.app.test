@@ -23,7 +23,7 @@ export default function Root() {
                     <Route path='/blog' element={<Blog/>}/>
                     <Route path='/blog/:id' element={<BlogPost/>}/>
                     <Route path='/product' element={<Product/>}/>
-                    <Route path='/singleProduct' element={<SingleProduct/>}/>
+                    <Route path='/product/:id' element={<SingleProduct/>}/>
                     <Route path='*' element={<NoMatch/>}/>
                 </Routes>
             </div>
