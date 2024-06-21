@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
+import useToggle from "../../hooks/useToggle.js";
 
 export default function SingleProduct() {
-    const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isCartOpen, setIsCartOpen] = useToggle(false);
 
     return (
         <>
@@ -44,8 +45,8 @@ export default function SingleProduct() {
                             <p className="px-2 py-1.5 bg-violet-700 rounded-lg text-white flex items-center">Beauty</p>
                             <p className="px-2 py-1.5 bg-violet-700 rounded-lg text-white">Mascara</p>
                         </div>
-                        <button
-                            className="mt-2.5 py-1 px-2.5 rounded border border-gray-200 text-gray-800 bg-violet-300 text-base w-full">Add
+                        <button onClick={() => setIsCartOpen((prevCartVisible) => !prevCartVisible)}
+                                className="mt-2.5 py-1 px-2.5 rounded border border-gray-200 text-gray-800 bg-violet-300 text-base w-full">Add
                             to Cart
                         </button>
                         <h2 className="text-black font-semibold text-lg my-1">More Product Info</h2>
@@ -177,12 +178,15 @@ export default function SingleProduct() {
                 <div className="fixed inset-y-0 right-0 w-96 h-screen bg-violet-50 p-4">
                     <div className="flex justify-between items-center">
                         <h2 className="text-xl font-semibold text-black mb-4">Cart (1)</h2>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                             className="lucide lucide-x">
-                            <path d="M18 6 6 18"/>
-                            <path d="m6 6 12 12"/>
-                        </svg>
+                        <button onClick={() => setIsCartOpen((prevIsCartOpen) => !prevIsCartOpen)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                 className="lucide lucide-x">
+                                <path d="M18 6 6 18"/>
+                                <path d="m6 6 12 12"/>
+                            </svg>
+                        </button>
                     </div>
                     <div className="flex space-x-3">
                         <img alt="Images" className="w-24 h-24 object-center"
