@@ -1,8 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import useToggle from "../hooks/useToggle.js";
 
 export default function Cart({productName, productImg, productCategory, productBrand, productPrice}) {
     const [isCartClose, setIsCartClose] = useToggle(true);
+    const [count, setCount] = useState(1);
+
+    const handleIncrement = () => {
+        setCount((prevCount) => prevCount + 1)
+    }
+
+    const handleDecrement = () => {
+        setCount((prevCount) => prevCount - 1)
+    }
+
+
     return (
         <>
             {isCartClose && (
@@ -30,12 +41,12 @@ export default function Cart({productName, productImg, productCategory, productB
                             </h6>
                             <div className="flex justify-between items-center">
                                 <div className="flex items-center space-x-1">
-                                    <button
-                                        className="py-0.5 px-2.5 rounded border border-gray-300 text-gray-600 text-lg">-
+                                    <button onClick={handleDecrement}
+                                            className="py-0.5 px-2.5 rounded border border-gray-300 text-gray-600 text-lg">-
                                     </button>
-                                    <span className="px-2 text-base">1</span>
-                                    <button
-                                        className="py-0.5 px-2.5 rounded border border-gray-300 text-gray-600 text-lg">+
+                                    <span className="px-2 text-base">{count}</span>
+                                    <button onClick={handleIncrement}
+                                            className="py-0.5 px-2.5 rounded border border-gray-300 text-gray-600 text-lg">+
                                     </button>
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
