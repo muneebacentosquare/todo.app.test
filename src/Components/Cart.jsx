@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import useToggle from "../hooks/useToggle.js";
-
-export default function Cart({productName, productImg, productCategory, productBrand, productPrice}) {
+import {ProductContext} from "../context/ProductContext.jsx";
+export default function Cart() {
     const [isCartClose, setIsCartClose] = useToggle(true);
     const [count, setCount] = useState(1);
+    const product = useContext(ProductContext);
 
     const handleIncrement = () => {
         setCount((prevCount) => prevCount + 1)
@@ -32,12 +33,12 @@ export default function Cart({productName, productImg, productCategory, productB
                     </div>
                     <div className="flex space-x-3">
                         <img alt="Images" className="w-24 h-24 object-center shadow-md"
-                             src={productImg}/>
+                             src={product.thumbnail}/>
                         <div className="w-full">
-                            <h5 className="text-black font-semibold text-base">{productName}</h5>
-                            <p className="text-gray-500 font-normal text-base">{productBrand} | {productCategory}</p>
+                            <h5 className="text-black font-semibold text-base">{product.title}</h5>
+                            <p className="text-gray-500 font-normal text-base">{product.brand} | {product.category}</p>
                             <h6 className="text-xl font-semibold">
-                                {productPrice}
+                                {product.price}
                             </h6>
                             <div className="flex justify-between items-center">
                                 <div className="flex items-center space-x-1">

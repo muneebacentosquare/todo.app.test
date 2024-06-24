@@ -4,6 +4,7 @@ import useFetch from "../../hooks/useFetch.js";
 import Rating from "../Rating.jsx";
 import Cart from "../Cart.jsx";
 import {useState} from "react";
+import {ProductContext} from "../../context/ProductContext.jsx";
 
 export default function product() {
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function product() {
     const {data: product, isLoading, errorMessage} = useFetch(`https://dummyjson.com/products/${params.id}`);
 
     return (
-        <>
+        <ProductContext.Provider value={product}>
             <div className="w-full lg:w-9/12 p-5 my-10 mx-auto justify-center rounded shadow">
                 {isLoading && (
                     <div className="flex justify-center items-center h-96">
@@ -96,9 +97,8 @@ export default function product() {
                 )}
             </div>
             {isCartOpen && (
-                <Cart productName={product.title} productImg={product.thumbnail} productBrand={product.brand}
-                      productCategory={product.category} productPrice={product.price} />
+                <Cart/>
             )}
-        </>
+        </ProductContext.Provider>
     );
 }
