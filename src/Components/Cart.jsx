@@ -1,11 +1,20 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import useToggle from "../hooks/useToggle.js";
-import {ProductContext} from "../context/ProductContext.jsx";
+import {ProductContext} from "../context/ProductContext.js";
+import {CartContext} from "../context/CartContext.js";
 
 export default function Cart() {
     const [isCartClose, setIsCartClose] = useToggle(true);
     const [count, setCount] = useState(1);
     const product = useContext(ProductContext);
+    const cartItems = useContext(CartContext);
+    const [quantity, setQuantity] = useState(product.quantity || 1); // Initialize with product quantity from local storage
+
+    const handleQuantityChange = (delta) => {
+        const newQuantity = Math.max(quantity + delta, 0); // Ensure quantity doesn't go below 0
+        setQuantity(newQuantity);
+        onQuantityChange(product.id, newQuantity); // Call function to update cart state
+    };
 
     const handleIncrement = () => {
         setCount((prevCount) => prevCount + 1)
@@ -18,42 +27,44 @@ export default function Cart() {
 
     return (
         <>
-            {isCartClose && (
-                <>
-                    <div className="absolute bg-black/50 inset-0"></div>
-                    <div className="fixed inset-y-0 right-0 w-96 h-screen bg-violet-50 p-4">
-                        <div className="flex justify-between items-center">
-                            <h2 className="text-xl font-semibold text-black mb-4">Cart (1)</h2>
-                            <button onClick={() => setIsCartClose((prevIsCartClose) => !prevIsCartClose)}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none"
-                                     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                                     className="lucide lucide-x">
-                                    <path d="M18 6 6 18"/>
-                                    <path d="m6 6 12 12"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div className="flex space-x-3">
+        {isCartClose && (
+            <>
+                <div className="absolute bg-black/50 inset-0"></div>
+                <div className="fixed inset-y-0 right-0 w-96 h-screen bg-violet-50 p-4">
+                    <div className="flex justify-between items-center">
+                        <h2 className="text-xl font-semibold text-black mb-4">Cart (1)</h2>
+                        <button onClick={() => setIsCartClose((prevIsCartClose) => !prevIsCartClose)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                 className="lucide lucide-x">
+                                <path d="M18 6 6 18"/>
+                                <path d="m6 6 12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    {cartItems.map(cartItem => (
+                        <div key={cartItem.id} className="flex space-x-3">
                             <img alt="Images" className="w-24 h-24 object-center shadow-md"
                                  src={product.thumbnail}/>
                             <div className="w-full">
-                                <h5 className="text-black font-semibold text-base">{product.title}</h5>
-                                <p className="text-gray-500 font-normal text-base">{product.brand} | {product.category}</p>
+                                <h5 className="text-black font-semibold text-base">{cartItem.title}</h5>
+                                <p className="text-gray-500 font-normal text-base">{cartItem.brand} | {cartItem.category}</p>
                                 <h6 className="text-xl font-semibold">
                                     {product.price}
                                 </h6>
                                 <div className="flex justify-between items-center">
                                     <div className="flex items-center space-x-1">
-                                        <button onClick={handleDecrement}
+                                        <button onClick={() => handleQuantityChange(-1)}
                                                 className="py-0.5 px-2.5 rounded border border-gray-300 text-gray-600 text-lg">-
                                         </button>
-                                        <span className="px-2 text-base">{count}</span>
-                                        <button onClick={handleIncrement}
+                                        <span className="px-2 text-base">{quantity}</span>
+                                        <button onClick={() => handleQuantityChange(1)}
                                                 className="py-0.5 px-2.5 rounded border border-gray-300 text-gray-600 text-lg">+
                                         </button>
                                     </div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                         viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
                                          strokeLinejoin="round" className="lucide lucide-trash-2">
                                         <path d="M3 6h18"/>
@@ -65,18 +76,19 @@ export default function Cart() {
                                 </div>
                             </div>
                         </div>
-                        <div className="fixed bottom-0 w-96 right-0 bg-violet-100 p-4">
-                            <div className="flex justify-between items-center">
-                                <p className="text-black font-normal text-base">Subtotal (1 item)</p>
-                                <p className="text-black font-normal text-base">$ 3,400</p>
-                            </div>
-                            <button
-                                className="mt-2.5 p-2.5 rounded border border-gray-200 text-gray-800 bg-violet-300 text-base w-full">Checkout
-                            </button>
+                    ))}
+                    <div className="fixed bottom-0 w-96 right-0 bg-violet-100 p-4">
+                        <div className="flex justify-between items-center">
+                            <p className="text-black font-normal text-base">Subtotal (1 item)</p>
+                            <p className="text-black font-normal text-base">$ 3,400</p>
                         </div>
+                        <button
+                            className="mt-2.5 p-2.5 rounded border border-gray-200 text-gray-800 bg-violet-300 text-base w-full">Checkout
+                        </button>
                     </div>
-                </>
-            )}
+                </div>
+            </>
+        )}
         </>
     );
 }
