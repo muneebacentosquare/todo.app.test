@@ -1,15 +1,39 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import useFetch from "../../hooks/useFetch.js";
 import Rating from "../Rating.jsx";
-import Cart from "../Cart.jsx";
 import {useState} from "react";
-import {ProductContext} from "../../context/ProductContext.jsx";
+import {ProductContext} from "../../context/ProductContext.js";
+import {CartContext} from "../../context/CartContext.js";
 
 export default function product() {
-    const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isCartOpen, setIsCartOpen] = useState(true);
     const params = useParams();
     const {data: product, isLoading, errorMessage} = useFetch(`https://dummyjson.com/products/${params.id}`);
+    const [cartItems, setCartItems] = useState([]);
+    useEffect(() => {
+        const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        setCartItems(storedCartItems);
+    }, []);
+
+    const handleAddToCart = (productData) => {
+        setIsCartOpen((prevCartVisible) => !prevCartVisible);
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const existingItem = cartItems.find((item) => item.id === productData.id);
+        if (existingItem) {
+            existingItem.quantity = existingItem.quantity ? existingItem.quantity + 1 : 1;
+        } else {
+            productData.quantity = 1;
+            cartItems.push(productData);
+        }
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    };
+    const handleRemoveItemFromCart = (productId) => {
+        const updatedCartItems = cartItems.filter((item) => item.productId !== productId);
+        setCartItems(updatedCartItems);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    }
+
 
     return (
         <ProductContext.Provider value={product}>
@@ -50,7 +74,9 @@ export default function product() {
                                         <p className="px-2 py-1.5 bg-violet-700 rounded-lg text-white flex items-center">{tag}</p>
                                     ))}
                                 </div>
-                                <button onClick={() => setIsCartOpen((prevCartVisible) => !prevCartVisible)}
+                                <button onClick={() => {
+                                    handleAddToCart(product)
+                                }}
                                         className="mt-2.5 py-1 px-2.5 rounded border border-gray-200 text-gray-800 bg-violet-300 text-base w-full">Add
                                     to Cart
                                 </button>
@@ -97,7 +123,8 @@ export default function product() {
                 )}
             </div>
             {isCartOpen && (
-                <Cart/>
+                <CartContext.Provider value={{cartItems}}>
+                </CartContext.Provider>
             )}
         </ProductContext.Provider>
     );
