@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import useFetch from "../../hooks/useFetch.js";
 import Rating from "../Rating.jsx";
@@ -10,6 +10,34 @@ export default function product() {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const params = useParams();
     const {data: product, isLoading, errorMessage} = useFetch(`https://dummyjson.com/products/${params.id}`);
+    const [cartItems, setCartItems] = useState([]);
+
+    function handleAddToCartBtn(product) {
+        setIsCartOpen((prevIsCartOpen) => !prevIsCartOpen);
+        const updatedCartItems = updateCartItems(cartItems, product);
+        setCartItems(updatedCartItems);
+    }
+
+    useEffect(() => {
+        if (isCartOpen && product) {
+            const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            // existingCartItems.push({...product, quantity: 1});
+            setCartItems(updateCartItems(existingCartItems,product));
+            localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+        }
+    }, [isCartOpen, product]);
+    const updateCartItems = (currentCartItems, newProduct) => {
+        const existingItem = currentCartItems.find((item) => item.id === newProduct.id);
+
+        if (existingItem) {
+            return currentCartItems.map((item) =>
+                item.id === newProduct.id ? { ...item, quantity: item.quantity + 1 } : item
+            );
+        } else {
+            return [...currentCartItems, { ...newProduct, quantity: 1 }];
+        }
+    };
+
 
     return (
         <ProductContext.Provider value={product}>
@@ -50,7 +78,7 @@ export default function product() {
                                         <p className="px-2 py-1.5 bg-violet-700 rounded-lg text-white flex items-center">{tag}</p>
                                     ))}
                                 </div>
-                                <button onClick={() => setIsCartOpen((prevCartVisible) => !prevCartVisible)}
+                                <button onClick={handleAddToCartBtn}
                                         className="mt-2.5 py-1 px-2.5 rounded border border-gray-200 text-gray-800 bg-violet-300 text-base w-full">Add
                                     to Cart
                                 </button>
@@ -97,7 +125,7 @@ export default function product() {
                 )}
             </div>
             {isCartOpen && (
-                <Cart/>
+                <Cart cartItems={cartItems}/>
             )}
         </ProductContext.Provider>
     );
