@@ -21,22 +21,11 @@ export default function product() {
     useEffect(() => {
         if (isCartOpen && product) {
             const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            // existingCartItems.push({...product, quantity: 1});
-            setCartItems(updateCartItems(existingCartItems,product));
+            existingCartItems.push({...product, quantity: 1});
+            setCartItems(existingCartItems);
             localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
         }
     }, [isCartOpen, product]);
-    const updateCartItems = (currentCartItems, newProduct) => {
-        const existingItem = currentCartItems.find((item) => item.id === newProduct.id);
-
-        if (existingItem) {
-            return currentCartItems.map((item) =>
-                item.id === newProduct.id ? { ...item, quantity: item.quantity + 1 } : item
-            );
-        } else {
-            return [...currentCartItems, { ...newProduct, quantity: 1 }];
-        }
-    };
 
 
     return (
