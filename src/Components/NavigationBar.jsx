@@ -26,19 +26,6 @@ export default function NavigationBar() {
                         Contact
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink className={({isActive}) =>
-                        isActive ? "font-bold" : ""
-                    } to="/blog">
-                        Blog
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink className={({isActive}) => isActive ? 'font-bold' : ""}
-                             to='/product'>
-                        Products
-                    </NavLink>
-                </li>
             </ul>
         </nav>
     );
