@@ -12,13 +12,6 @@ export default function NavigationBar() {
                         Home
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink className={({isActive}) =>
-                        isActive ? "font-bold" : ""
-                    } to="/github-issues">
-                        Github Issues
-                    </NavLink>
-                </li>
             </ul>
         </nav>
     );
