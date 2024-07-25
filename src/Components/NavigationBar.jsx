@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 export default function NavigationBar() {
     return (
         <nav className="mx-6 my-2 p-2 bg-violet-300">
-            <ul className="flex space-x-2 justify-center items-center">
+            <ul className="flex space-x-4 justify-center items-center">
                 <li>
                     <NavLink className={({isActive}) =>
                         isActive ? "font-bold" : ""
@@ -15,15 +15,8 @@ export default function NavigationBar() {
                 <li>
                     <NavLink className={({isActive}) =>
                         isActive ? "font-bold" : ""
-                    } to="/about">
-                        About
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink className={({isActive}) =>
-                        isActive ? "font-bold" : ""
-                    } to="/contact">
-                        Contact
+                    } to="/github-issues">
+                        Github Issues
                     </NavLink>
                 </li>
             </ul>

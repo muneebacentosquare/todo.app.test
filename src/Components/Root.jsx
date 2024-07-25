@@ -3,9 +3,7 @@ import App from "../App.jsx";
 import '../App.css'
 import NavigationBar from "./NavigationBar.jsx";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import About from "./pages/About.jsx";
-import Contact from "./pages/Contact.jsx";
-import NoMatch from "./pages/NoMatch.jsx";
+import GithubIssue from "./pages/GithubIssue.jsx";
 
 export default function Root() {
     return (
@@ -14,9 +12,7 @@ export default function Root() {
             <div className="p-2">
                 <Routes>
                     <Route path='/' element={<App/>}/>
-                    <Route path='/about' element={<About/>}/>
-                    <Route path='/contact' element={<Contact/>}/>
-                    <Route path='*' element={<NoMatch/>}/>
+                    <Route path='/github-issues' element={<GithubIssue/>}/>
                 </Routes>
             </div>
         </Router>
